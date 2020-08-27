@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="com.training.mstMainte.mapper.BoardMapper">
+	<select id="selectBoard" resultType="com.training.mstMainte.entity.BoardVO">
+		select * from mst_goods;
+	</select>
+	
+	<select id="searchBoard" resultType="com.training.mstMainte.entity.BoardVO">
+		select * from mst_goods
+		where goods_number = #{keyword}
+	</select>
+	
+	<select id="viewBoard" resultType="com.training.mstMainte.entity.BoardVO">
+		select * from mst_goods
+		where goods_number = #{goods_number}
+	</select>
+	
+	<insert id="insertBoard">
+		insert into mst_goods(goods_number, goods_name, goods_id, goods_price, insert_date, update_date)
+		values(#{goods_number}, #{goods_name}, #{goods_id},#{goods_price}, now(), now())
+	</insert>
+	
+	<update id="updateBoard">
+		update mst_goods set 
+		goods_number = #{goods_number},
+		goods_name = #{goods_name},
+		goods_price = #{goods_price},
+		update_date = now()
+		where goods_number = #{goods_number}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete from mst_goods
+		where goods_number = #{goods_number}
+	</delete>
+	
+	<select id="checkGoodsNumber" resultType="int">
+		select count(*) from mst_goods
+		where goods_number = #{goods_number}
+	</select>
+	
+	<select id="selectBoardDress" resultType="com.training.mstMainte.entity.BoardVO">
+		select * from mst_goods
+		where goods_id = #{goods_id}
+	</select>
+	
+	<select id="selectBoardEat" resultType="com.training.mstMainte.entity.BoardVO">
+		select * from mst_goods
+		where goods_id = #{goods_id}
+	</select>
+	
+	<select id="selectBoardEtc" resultType="com.training.mstMainte.entity.BoardVO">
+		select * from mst_goods
+		where goods_id = #{goods_id}
+	</select>
+</mapper>
